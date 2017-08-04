@@ -18,27 +18,14 @@ export default class Main extends Component {
 
   }
   static navigationOptions = {
-   title: 'Home',
+   title: 'Game Over',
   };
   render() {
     return (
       <View style={styles.container}>
         <Text style={styles.welcome}>
-          Welcome
+          Game Over
         </Text>
-        <Text style={styles.instructions}>
-          To get started, Enter Your Mango Tree Name
-        </Text>
-        <TextInput
-          style={styles.input}
-          onChangeText={(name) => this.setState({name})}
-          value= {this.state.name}
-          placeHolder="input your mango tree name..."
-        >
-        </TextInput>
-        <Button onPress={() => this.start()}
-          title="Get Started">
-        </Button>
       </View>
     );
   }

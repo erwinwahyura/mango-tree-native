@@ -12,7 +12,7 @@ import {
 export default class Main extends Component {
   constructor(props) {
     super(props)
-    this.state = { tree: 'this is Groat', old: 0, img: 'https://www.dropbox.com/home/mangotree?preview=0.png', buah: 0, status: 'panen'}
+    this.state = { tree: 'this is Groat', old: 0, buah: 0, status: 'panen'}
   }
 
   start() {
@@ -40,7 +40,7 @@ export default class Main extends Component {
    title: 'Main Mango Tree',
   };
   render() {
-    console.log('myimg: ', this.state.img);
+    const { navigate } = this.props.navigation;
     return (
       <View style={styles.container}>
         <Text style={styles.welcome}>
@@ -53,31 +53,31 @@ export default class Main extends Component {
             {
               this.state.old === 0 ?
               <View>
-                <Image source={{uri: 'https://www.dropbox.com/home/mangotree?preview=0.png', cache: 'only-if-cached'}}
+                <Image source={{uri: 'http://i.imgur.com/E6383jI.png', cache: 'only-if-cached'}}
                         style={{width: 400, height: 300}} />
 
               </View> :
               this.state.old >= 5 && this.state.old <=10 ?
               <View>
-                <Image source={{uri: 'https://www.dropbox.com/home/mangotree?preview=1.png', cache: 'only-if-cached'}}
+                <Image source={{uri: 'http://i.imgur.com/wcshomD.png', cache: 'only-if-cached'}}
                         style={{width: 400, height: 300}} />
 
               </View> :
               this.state.old >= 11 && this.state.old <=20 ?
               <View>
-                <Image source={{uri: 'https://www.dropbox.com/home/mangotree?preview=2.png', cache: 'only-if-cached'}}
+                <Image source={{uri: 'http://i.imgur.com/vlwMhsl.png', cache: 'only-if-cached'}}
                         style={{width: 400, height: 300}} />
 
               </View> :
               this.state.old >= 21 && this.state.old <=30 ?
               <View>
-                <Image source={{uri: 'https://www.dropbox.com/home/mangotree?preview=3.png', cache: 'only-if-cached'}}
+                <Image source={{uri: 'http://i.imgur.com/hFzut5p.png', cache: 'only-if-cached'}}
                         style={{width: 400, height: 300}} />
 
               </View> :
               this.state.old >= 31 ?
               <View>
-                <Image source={{uri: 'https://www.dropbox.com/home/mangotree?preview=4.png', cache: 'only-if-cached'}}
+                <Image source={{uri: 'http://i.imgur.com/5WP0Jsk.png', cache: 'only-if-cached'}}
                         style={{width: 400, height: 300}} />
 
               </View> :
@@ -91,10 +91,23 @@ export default class Main extends Component {
           <Button onPress={() => this.start()}
             title="GROW">
           </Button>
-          :
+          : null
+
+        }
+
+        {
           this.state.old >= 21 && this.state.old <=30 ?
           <Button onPress={() => this.harvest()}
             title="Harvest">
+          </Button>
+          :
+          null
+        }
+
+        {
+          this.state.old >= 32 ?
+          <Button onPress={() => navigate('Gameover')}
+            title="OK">
           </Button>
           :
           null

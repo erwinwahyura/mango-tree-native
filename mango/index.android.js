@@ -4,4 +4,4 @@
  * @flow
  */
 
-import './src/App.js'
+import Main from './src/App.js'
