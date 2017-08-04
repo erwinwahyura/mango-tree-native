@@ -9,7 +9,9 @@ import {
 } from 'react-native';
 
 import  { Navigate } from 'react-navigation'
-
+import { start } from '../actions'
+import store from '../stores'
+import { connect } from 'react-redux'
 export default class mango extends Component {
   constructor(props) {
     super(props)
@@ -47,6 +49,18 @@ export default class mango extends Component {
   }
 }
 
+const mapStateToProps = (state) => {
+  return {
+    dataTree: state
+  }
+}
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    grow: () => dispatch()
+  }
+}
+
 const styles = StyleSheet.create({
   container: {
     flex: 1,
@@ -68,5 +82,7 @@ const styles = StyleSheet.create({
     width: '80%'
   }
 });
+
+// export default connect(mapStateToProps, mapDispatchToProps)(Home)
 
 AppRegistry.registerComponent('mango', () => mango);

@@ -24,9 +24,6 @@ export default class Main extends Component {
     this.setState({
       old: this.state.old
     })
-
-
-
   }
   harvest() {
     var x = Math.floor((Math.random() * 30) + 20);
