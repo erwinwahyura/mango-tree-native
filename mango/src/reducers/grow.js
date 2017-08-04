@@ -7,7 +7,6 @@ export default (state=initialState, action) =>{
     case 'GROW':
       console.log('--------------------3')
       return {...state, treeMango: action.payload.numberOLD}
-    default
-      return state
   }
+  return state
 }
