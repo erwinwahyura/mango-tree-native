@@ -12,15 +12,29 @@ import {
 export default class Main extends Component {
   constructor(props) {
     super(props)
-    this.state = { tree: 'this is Groat', old: 0, img: 'https://www.dropbox.com/home/mangotree?preview=0.png'}
+    this.state = { tree: 'this is Groat', old: 0, img: 'https://www.dropbox.com/home/mangotree?preview=0.png', buah: 0, status: 'panen'}
   }
 
   start() {
     var x = Math.floor((Math.random() * 10) + 1);
+    var total = 0
+    this.state.old = this.state.old += x
+    console.log(x);
+    console.log('ini total: ', this.state.old);
     this.setState({
-      old: x
+      old: this.state.old
     })
-    console.log(this.state.old);
+
+
+
+  }
+  harvest() {
+    var x = Math.floor((Math.random() * 30) + 20);
+    this.setState({
+      buah: x,
+      panen: 'sudah'
+    })
+    alert('Your Harvest Is '+ x)
   }
   static navigationOptions = {
    title: 'Main Mango Tree',
@@ -36,12 +50,56 @@ export default class Main extends Component {
           {this.state.tree + ' he is ' + this.state.old + ' year`s old'}
         </Text>
         <View>
-          <Image source={{uri: 'assets/0.png', cache: 'only-if-cached'}}
-                  style={{width: 400, height: 300}} />
+            {
+              this.state.old === 0 ?
+              <View>
+                <Image source={{uri: 'https://www.dropbox.com/home/mangotree?preview=0.png', cache: 'only-if-cached'}}
+                        style={{width: 400, height: 300}} />
+
+              </View> :
+              this.state.old >= 5 && this.state.old <=10 ?
+              <View>
+                <Image source={{uri: 'https://www.dropbox.com/home/mangotree?preview=1.png', cache: 'only-if-cached'}}
+                        style={{width: 400, height: 300}} />
+
+              </View> :
+              this.state.old >= 11 && this.state.old <=20 ?
+              <View>
+                <Image source={{uri: 'https://www.dropbox.com/home/mangotree?preview=2.png', cache: 'only-if-cached'}}
+                        style={{width: 400, height: 300}} />
+
+              </View> :
+              this.state.old >= 21 && this.state.old <=30 ?
+              <View>
+                <Image source={{uri: 'https://www.dropbox.com/home/mangotree?preview=3.png', cache: 'only-if-cached'}}
+                        style={{width: 400, height: 300}} />
+
+              </View> :
+              this.state.old >= 31 ?
+              <View>
+                <Image source={{uri: 'https://www.dropbox.com/home/mangotree?preview=4.png', cache: 'only-if-cached'}}
+                        style={{width: 400, height: 300}} />
+
+              </View> :
+              <Text>Your Tree is Ub-normal</Text>
+
+            }
+
         </View>
-        <Button onPress={() => this.start()}
-          title="GROW">
-        </Button>
+        {
+          this.state.old <= 31 ?
+          <Button onPress={() => this.start()}
+            title="GROW">
+          </Button>
+          :
+          this.state.old >= 21 && this.state.old <=30 ?
+          <Button onPress={() => this.harvest()}
+            title="Harvest">
+          </Button>
+          :
+          null
+        }
+
       </View>
     );
   }
